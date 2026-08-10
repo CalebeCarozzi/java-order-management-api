@@ -1,14 +1,27 @@
 package com.calebecarozzi.javaordermanagementapi.entities;
 
+import jakarta.persistence.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+//aqui vamos ter que colocar umas coisas do JPA
+// que vão servir para instruir pra ele saber como ele vai
+// converter os objetos para o modelo relacional
+
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
+    //aqui fala que ele é a chave primaria
+    // e que vai ser autoincrementada
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;

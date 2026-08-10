@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
-    //falta associações
+    //falta associações, mas ainda não tem as outras entidades
 
     public User(){}
 

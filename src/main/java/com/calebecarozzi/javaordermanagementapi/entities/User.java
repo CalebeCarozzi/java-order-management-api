@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -27,6 +29,11 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    //o outro lado é o owning side, então aqui a gente fala pra ele que já
+    //esta tudo mapeado do outro lado no atributo cliente
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     //falta associações, mas ainda não tem as outras entidades
 
@@ -80,6 +87,10 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -91,7 +102,6 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
-
 
 
 }

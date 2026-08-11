@@ -1,5 +1,6 @@
 package com.calebecarozzi.javaordermanagementapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -32,10 +33,16 @@ public class User implements Serializable {
 
     //o outro lado é o owning side, então aqui a gente fala pra ele que já
     //esta tudo mapeado do outro lado no atributo cliente
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
-
-    //falta associações, mas ainda não tem as outras entidades
+    //isso faz na hora de chamar com get por exemplio, o jason ignorar os pedidos,
+    // se não poderia virar um looping, cada order tem um cliente, dai cada
+    // cliente tem varios orders e dai assim vai
+    //se eu coloco o JSON ignore no meu user dentro de order, dai inverte, dai ele ignora o client e não os orders
+    //dai quando eu coloco /Users na pesquisa, ele chama o usuario e todos os pediddos dele
+    //e quando eu coloco /Orders ele chama os pedidos e não mostra quem são seus usuarios
+    //e não da looping, porque o order nem se quer mostra mais quem são os clientes então não tem como dar loop
 
     public User(){}
 

@@ -1,13 +1,16 @@
 package com.calebecarozzi.javaordermanagementapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.util.*;
 
 @Entity
 @Table(name = "tb_category")
 public class Category {
 
+    @Serial
     private static final Long serialVersionUID = 1L;
 
     @Id
@@ -15,7 +18,8 @@ public class Category {
     private Long id;
     private String name;
 
-    @Transient
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
     public Category(){}

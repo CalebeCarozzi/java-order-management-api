@@ -2,9 +2,11 @@ package com.calebecarozzi.javaordermanagementapi.config;
 
 //classe de configuração para o perfil de teste
 
+import com.calebecarozzi.javaordermanagementapi.entities.Category;
 import com.calebecarozzi.javaordermanagementapi.entities.Order;
 import com.calebecarozzi.javaordermanagementapi.entities.User;
 import com.calebecarozzi.javaordermanagementapi.entities.enums.OrderStatus;
+import com.calebecarozzi.javaordermanagementapi.repositories.CategoryRepository;
 import com.calebecarozzi.javaordermanagementapi.repositories.OrderRepository;
 import com.calebecarozzi.javaordermanagementapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     //como fazer pra implementar os dados quando o projeto for iniciado
     //pra isso a interface, tudo aqui dentro vai ser executado quando a aplicação for iniciada
     @Override
@@ -40,8 +45,13 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT ,u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 
 

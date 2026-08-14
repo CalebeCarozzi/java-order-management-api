@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -35,6 +37,9 @@ public class Order {
     //isso porque só tem um, mas se fosse o contrario, dentro de user, ele não carrega
     //pra não estorar a memoria no trafego, porque dai o usuario pode ter varios pedidos
 
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order() {
     }
@@ -78,6 +83,10 @@ public class Order {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public Set<OrderItem> getItems(){
+        return items;
     }
 
     @Override

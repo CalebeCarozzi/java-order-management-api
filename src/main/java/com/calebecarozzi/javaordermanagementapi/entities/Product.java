@@ -3,7 +3,6 @@ package com.calebecarozzi.javaordermanagementapi.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.io.Serial;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -12,7 +11,6 @@ import java.util.Set;
 @Table(name = "tb_prooduct")
 public class Product {
 
-    @Serial
     private static final Long SerialVersionUID = 1L;
 
     @Id

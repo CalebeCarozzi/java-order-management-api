@@ -3,14 +3,13 @@ package com.calebecarozzi.javaordermanagementapi.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.io.Serial;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "tb_category")
-public class Category {
+public class Category implements Serializable {
 
-    @Serial
     private static final Long serialVersionUID = 1L;
 
     @Id

@@ -4,6 +4,7 @@ import com.calebecarozzi.javaordermanagementapi.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -12,8 +13,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
-public class Order {
+public class Order implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -40,6 +42,10 @@ public class Order {
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
+
+    //faz com que o id o order seja o mesmo id do pagamento na tabela
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
     public Order() {
     }
@@ -83,6 +89,14 @@ public class Order {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public Set<OrderItem> getItems(){

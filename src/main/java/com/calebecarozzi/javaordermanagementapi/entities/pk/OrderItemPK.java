@@ -6,13 +6,12 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class OrderItemPK {
+public class OrderItemPK implements Serializable {
 
-    @Serial
     private static final Long serialVersionUID = 1L;
 
     @ManyToOne

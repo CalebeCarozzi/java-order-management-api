@@ -63,6 +63,11 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
+    //aqui o get para o Json conseguir captura esse metodo
+    public Double getSubTotal(){
+        return price * quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

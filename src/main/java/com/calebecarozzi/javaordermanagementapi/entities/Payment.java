@@ -1,5 +1,6 @@
 package com.calebecarozzi.javaordermanagementapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -22,6 +23,7 @@ public class Payment implements Serializable {
     //o pagamento é a classe dependente, pois o order pode existir sem pedido
     @OneToOne
     @MapsId
+    @JsonIgnore
     private Order order;
 
     public Payment(){}

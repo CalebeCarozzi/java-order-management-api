@@ -2,7 +2,6 @@ package com.calebecarozzi.javaordermanagementapi.services;
 
 import com.calebecarozzi.javaordermanagementapi.entities.Order;
 import com.calebecarozzi.javaordermanagementapi.repositories.OrderRepository;
-import com.calebecarozzi.javaordermanagementapi.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,6 @@ public class OrderService {
     public Order findById(Long id){
         Optional<Order> obj = repository.findById(id);
         return obj.get();
-
     }
 
 

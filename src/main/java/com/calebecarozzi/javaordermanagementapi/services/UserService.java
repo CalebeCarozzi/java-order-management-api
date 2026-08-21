@@ -2,6 +2,7 @@ package com.calebecarozzi.javaordermanagementapi.services;
 
 import com.calebecarozzi.javaordermanagementapi.entities.User;
 import com.calebecarozzi.javaordermanagementapi.repositories.UserRepository;
+import com.calebecarozzi.javaordermanagementapi.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class UserService {
 
     public User findById(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        //vou tenta da o get pra pega o usuario do Opcional, dai se não tiver, vai lança exceção
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     //vai inserir e retornar o objeto inserido
